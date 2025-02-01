@@ -5,10 +5,11 @@ FROM node:21.2.0-slim
 WORKDIR /app
 
 # Copy the package.json and package-lock.json into the container
-COPY package*.json ./
+COPY package.json package.json
+COPY package-lock.json package-lock.json
 
 # Install the dependencies (production dependencies only)
-RUN npm install --production
+RUN npm install 
 
 # Copy all the remaining application files into the /app directory
 COPY . .
@@ -17,4 +18,4 @@ COPY . .
 EXPOSE 5000
 
 # Command to run the app (modify based on your app's entry point)
-CMD ["node", "index.js"]  # or your entry point command
+CMD ["npm", "start"]
