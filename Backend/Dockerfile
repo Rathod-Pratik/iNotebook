@@ -1,20 +1,20 @@
-# Use the official Node.js v21.2.0 Alpine image for a smaller image size
-FROM node:21.2.0-alpine
+# Use the official Node.js image as the base
+FROM node:21.2.0-slim
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json first for better caching of dependencies
+# Copy the package.json and package-lock.json into the container
 COPY package*.json ./
 
-# Install dependencies (this will be cached if package.json hasn't changed)
+# Install the dependencies (production dependencies only)
 RUN npm install --production
 
-# Copy the rest of the application files
+# Copy all the remaining application files into the /app directory
 COPY . .
 
-# Expose the port that the app will run on
-EXPOSE 3000
+# Expose the port the app will run on (change this based on your app)
+EXPOSE 5000
 
-# Start the Node.js application
-CMD ["node", "index.js"]
+# Command to run the app (modify based on your app's entry point)
+CMD ["node", "index.js"]  # or your entry point command
