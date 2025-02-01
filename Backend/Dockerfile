@@ -3,7 +3,8 @@ FROM node:21-alpine
 WORKDIR /app
 
 # Copy package.json and package-lock.json first to leverage caching
-COPY package*.json ./
+COPY package.json .
+COPY package-lock.json .
 
 # Install dependencies
 RUN npm install
